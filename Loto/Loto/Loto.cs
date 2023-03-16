@@ -4,7 +4,7 @@ namespace LotoClassNS
 {
     // Clase que almacena una combinación de la lotería
     //
-    public class loto
+    public class LotoYAG2223
     {
         // definición de constantes
         public const int MAX_NUMEROS = 6;
@@ -14,28 +14,30 @@ namespace LotoClassNS
         private int[] _nums = new int[MAX_NUMEROS];   // numeros de la combinación
         public bool ok = false;      // combinación válida (si es aleatoria, siempre es válida, si no, no tiene porqué)
 
-        public int[] Nums { 
+        public int[] Numeros { 
             get => _nums; 
             set => _nums = value; 
         }
 
         // En el caso de que el constructor sea vacío, se genera una combinación aleatoria correcta
-        //
-        public loto()
+        /// <summary>
+        /// Es un constructor donde genera una convinacion aleatoria de numeros
+        /// </summary>
+        public LotoYAG2223()
         {
-            Random r = new Random();    // clase generadora de números aleatorios
+            Random numeroAletorio = new Random();    // clase generadora de números aleatorios
 
-            int i=0, j, num;
+            int i=0, j, numero;
 
             do             // generamos la combinación
             {                       
-                num = r.Next(NUMERO_MENOR, NUMERO_MAYOR + 1);     // generamos un número aleatorio del 1 al 49
+                numero = numeroAletorio.Next(NUMERO_MENOR, NUMERO_MAYOR + 1);     // generamos un número aleatorio del 1 al 49
                 for (j=0; j<i; j++)    // comprobamos que el número no está
-                    if (Nums[j]==num)
+                    if (Numeros[j]==numero)
                         break;
                 if (i==j)               // Si i==j, el número no se ha encontrado en la lista, lo añadimos
                 {
-                    Nums[i]=num;
+                    Numeros[i]=numero;
                     i++;
                 }
             } while (i<MAX_NUMEROS);
@@ -45,16 +47,20 @@ namespace LotoClassNS
 
         // La segunda forma de crear una combinación es pasando el conjunto de números
         // misnums es un array de enteros con la combinación que quiero crear (no tiene porqué ser válida)
-        public loto(int[] misnums)  // misnumeros: combinación con la que queremos inicializar la clase
+        /// <summary>
+        /// Es un constructor donde crea una conbinacion y le pasa un conjunto de numeros en un array con la conbinacion que se quiere crear
+        /// </summary>
+        /// <param name="misNumeros">Es una lista con los que queremos inicializar la clase</param>
+        public LotoYAG2223(int[] misNumeros)  // misnumeros: combinación con la que queremos inicializar la clase
         {
             for (int i=0; i<MAX_NUMEROS; i++)
-                if (misnums[i]>=NUMERO_MENOR && misnums[i]<=NUMERO_MAYOR) {
+                if (misNumeros[i]>=NUMERO_MENOR && misNumeros[i]<=NUMERO_MAYOR) {
                     int j;
                     for (j=0; j<i; j++) 
-                        if (misnums[i]==Nums[j])
+                        if (misNumeros[i]==Numeros[j])
                             break;
                     if (i==j)
-                        Nums[i]=misnums[i]; // validamos la combinación
+                        Numeros[i]=misNumeros[i]; // validamos la combinación
                     else {
                         ok=false;
                         return;
@@ -71,13 +77,18 @@ namespace LotoClassNS
         // Método que comprueba el número de aciertos
         // premi es un array con la combinación ganadora
         // se devuelve el número de aciertos
-        public int comprobar(int[] premi)
+        /// <summary>
+        /// Es un metodo hace un bucle donde va sacando el numero de aciertos
+        /// </summary>
+        /// <param name="premio">Es una lista donde se encunetra el numero ganador</param>
+        /// <returns>Devuelve la variable de numeros de aciertos</returns>
+        public int comprobar(int[] premio)
         {
-            int a=0;                    // número de aciertos
+            int numeroAcierto=0;                    // número de aciertos
             for (int i=0; i<MAX_NUMEROS; i++)
                 for (int j=0; j<MAX_NUMEROS; j++)
-                    if (premi[i]==Nums[j]) a++;
-            return a;
+                    if (premio[i]==Numeros[j]) numeroAcierto++;
+            return numeroAcierto;
         }
     }
 

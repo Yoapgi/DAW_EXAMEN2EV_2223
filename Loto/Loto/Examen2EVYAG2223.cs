@@ -11,12 +11,12 @@ using LotoClassNS;
 
 namespace ExamenLoto
 {
-    public partial class Form1 : Form
+    public partial class Examen2EVYAG2223 : Form
     {
-        public loto miLoto, miGanadora;
+        public LotoYAG2223 miLoto, miGanadora;
         private TextBox[] combinacion = new TextBox[6]; // Estos arrays se usan para recorrer de manera más sencilla los controles
         private TextBox[] ganadora = new TextBox[6];
-        public Form1()
+        public Examen2EVYAG2223()
         {
             InitializeComponent();
             combinacion[0] = txtNumero1; ganadora[0] = txtGanadora1;
@@ -25,17 +25,17 @@ namespace ExamenLoto
             combinacion[3] = txtNumero4; ganadora[3] = txtGanadora4;
             combinacion[4] = txtNumero5; ganadora[4] = txtGanadora5;
             combinacion[5] = txtNumero6; ganadora[5] = txtGanadora6;
-            miGanadora = new loto(); // generamos la combinación ganadora
+            miGanadora = new LotoYAG2223(); // generamos la combinación ganadora
             for (int i = 0; i < 6; i++)
-                ganadora[i].Text = Convert.ToString(miGanadora.Nums[i]);
+                ganadora[i].Text = Convert.ToString(miGanadora.Numeros[i]);
 
         }
 
         private void btGenerar_Click(object sender, EventArgs e)
         {
-            miLoto = new loto(); // usamos constructor vacío, se genera combinación aleatoria
+            miLoto = new LotoYAG2223(); // usamos constructor vacío, se genera combinación aleatoria
             for ( int i=0; i<6; i++ )
-                combinacion[i].Text = Convert.ToString(miLoto.Nums[i]);
+                combinacion[i].Text = Convert.ToString(miLoto.Numeros[i]);
         }
 
         private void btValidar_Click(object sender, EventArgs e)
@@ -43,7 +43,7 @@ namespace ExamenLoto
             int[] nums = new int[6];    
             for (int i = 0; i < 6; i++)
                 nums[i] = Convert.ToInt32(combinacion[i].Text);
-            miLoto = new loto(nums);
+            miLoto = new LotoYAG2223(nums);
             if (miLoto.ok)
                 MessageBox.Show("Combinación válida");
             else
@@ -55,7 +55,7 @@ namespace ExamenLoto
             int[] nums = new int[6];
             for (int i = 0; i < 6; i++)
                 nums[i] = Convert.ToInt32(combinacion[i].Text);
-            miLoto = new loto(nums);
+            miLoto = new LotoYAG2223(nums);
             if (miLoto.ok)
             {
                 nums = new int[6];
