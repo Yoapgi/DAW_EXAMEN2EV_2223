@@ -30,11 +30,11 @@ namespace LotoClassNS
             int i = 0;
             int j;
             int numero;
-            const int suma_NUMEROS = 1;
+            const int Suma_NUMEROS = 1;
 
             do             // generamos la combinación
             {                       
-                numero = numeroAletorio.Next(NUMERO_MENOR, NUMERO_MAYOR + suma_NUMEROS);     // generamos un número aleatorio del 1 al 49
+                numero = numeroAletorio.Next(NUMERO_MENOR, NUMERO_MAYOR + Suma_NUMEROS);     // generamos un número aleatorio del 1 al 49
                 for (j=0; j<i; j++)    // comprobamos que el número no está
                     if (Numeros[j]==numero)
                         break;
