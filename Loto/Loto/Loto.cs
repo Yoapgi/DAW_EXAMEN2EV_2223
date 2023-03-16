@@ -11,12 +11,12 @@ namespace LotoClassNS
         public const int NUMERO_MENOR = 1;
         public const int NUMERO_MAYOR = 49;
         
-        private int[] _nums = new int[MAX_NUMEROS];   // numeros de la combinación
+        private int[] _numeros = new int[MAX_NUMEROS];   // numeros de la combinación
         public bool ok = false;      // combinación válida (si es aleatoria, siempre es válida, si no, no tiene porqué)
 
         public int[] Numeros { 
-            get => _nums; 
-            set => _nums = value; 
+            get => _numeros; 
+            set => _numeros = value; 
         }
 
         // En el caso de que el constructor sea vacío, se genera una combinación aleatoria correcta
@@ -27,11 +27,14 @@ namespace LotoClassNS
         {
             Random numeroAletorio = new Random();    // clase generadora de números aleatorios
 
-            int i=0, j, numero;
+            int i = 0;
+            int j;
+            int numero;
+            const int suma_NUMEROS = 1;
 
             do             // generamos la combinación
             {                       
-                numero = numeroAletorio.Next(NUMERO_MENOR, NUMERO_MAYOR + 1);     // generamos un número aleatorio del 1 al 49
+                numero = numeroAletorio.Next(NUMERO_MENOR, NUMERO_MAYOR + suma_NUMEROS);     // generamos un número aleatorio del 1 al 49
                 for (j=0; j<i; j++)    // comprobamos que el número no está
                     if (Numeros[j]==numero)
                         break;
@@ -71,7 +74,7 @@ namespace LotoClassNS
                     ok=false;     // La combinación no es válida, terminamos
                     return;
                 }
-	    ok=true;
+	        ok=true;
         }
 
         // Método que comprueba el número de aciertos

@@ -40,10 +40,10 @@ namespace ExamenLoto
 
         private void btValidar_Click(object sender, EventArgs e)
         {
-            int[] nums = new int[6];    
+            int[] numeros = new int[6];    
             for (int i = 0; i < 6; i++)
-                nums[i] = Convert.ToInt32(combinacion[i].Text);
-            miLoto = new LotoYAG2223(nums);
+                numeros[i] = Convert.ToInt32(combinacion[i].Text);
+            miLoto = new LotoYAG2223(numeros);
             if (miLoto.ok)
                 MessageBox.Show("Combinación válida");
             else
@@ -52,16 +52,16 @@ namespace ExamenLoto
 
         private void btComprobar_Click(object sender, EventArgs e)
         {
-            int[] nums = new int[6];
+            int[] numeros = new int[6];
             for (int i = 0; i < 6; i++)
-                nums[i] = Convert.ToInt32(combinacion[i].Text);
-            miLoto = new LotoYAG2223(nums);
+                numeros[i] = Convert.ToInt32(combinacion[i].Text);
+            miLoto = new LotoYAG2223(numeros);
             if (miLoto.ok)
             {
-                nums = new int[6];
+                numeros = new int[6];
                 for (int i = 0; i < 6; i++)
-                    nums[i] = Convert.ToInt32(combinacion[i].Text);
-                int aciertos = miGanadora.comprobar(nums);
+                    numeros[i] = Convert.ToInt32(combinacion[i].Text);
+                int aciertos = miGanadora.comprobar(numeros);
                 if (aciertos < 3)
                     MessageBox.Show("No ha resultado premiada");
                 else
